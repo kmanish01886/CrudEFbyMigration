@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrudEFbyMigration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231024172048_tableuseranduserRole")]
-    partial class tableuseranduserRole
+    [Migration("20250504100416_adfs")]
+    partial class adfs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,12 +84,7 @@ namespace CrudEFbyMigration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userRoleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("userRoleId");
 
                     b.ToTable("Users");
                 });
@@ -112,17 +107,6 @@ namespace CrudEFbyMigration.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("CrudEFbyMigration.Models.User", b =>
-                {
-                    b.HasOne("CrudEFbyMigration.Models.UserRole", "userRoleName")
-                        .WithMany()
-                        .HasForeignKey("userRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("userRoleName");
                 });
 #pragma warning restore 612, 618
         }
